@@ -1,6 +1,6 @@
 site_name: Prévision de la Demande Énergétique
 site_description: "Documentation du projet académique de prévision de la demande électrique en Espagne"
-repo_url: https://github.com/Marc1T/energy-demand-doc.git
+repo_url: https://github.com/Marc1T/electricityDemandForecasting.git
 
 theme:
   name: material

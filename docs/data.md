@@ -203,8 +203,6 @@ features_to_keep = list(set(features_to_keep))
         mi_s = pd.Series(mi, index=X.columns).sort_values(ascending=False)
         return mi_s.head(top_k)
 ```
-Cette étape permet de ne conserver que les variables les plus explicatives pour chaque zone, ce qui améliore la robustesse et la performance des modèles.
-
 Le fichier suivant a été généré et utilisé pour la suite :
 
 📄 `submission/features_selected_hourly.csv`
