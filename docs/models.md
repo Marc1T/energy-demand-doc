@@ -1,112 +1,174 @@
-# Modèles
+# Modèles de prévision
 
-Cette section présente les différentes familles de modèles testées pour la prévision de la demande électrique, ainsi que les choix finaux retenus.
+Dans ce projet, nous avons testé plusieurs modèles de machine learning et de deep learning pour prédire la demande électrique en Espagne à différentes échelles temporelles (horaire et journalière). Chaque modèle a été évalué sur ses performances de prédiction, sa robustesse et sa capacité à généraliser selon les zones géographiques.
 
 ---
 
-## 1. Modèles classiques (Machine Learning & statistiques)
+## 1. Modèles classiques de Machine Learning
 
-| Modèle        | Description                                                  | Usage               |
-|---------------|--------------------------------------------------------------|---------------------|
-| **ElasticNet**| Régression linéaire avec régularisation L1 (Lasso) et L2 (Ridge).<br>Permet la sélection de variables. | Baseline, sélection de features |
-| **Ridge**     | Régression linéaire avec pénalité L2.                        | Baseline           |
-| **RandomForest** | Modèle d’ensemble (bagging) d’arbres de décision.<br>Robuste face aux non-linéarités et peu sensible aux outliers. | Meilleur hourly/journalier sur plusieurs zones |
-| **LightGBM**  | Gradient boosting séquentiel optimisé pour la rapidité.<br>Excellent pour les gros jeux de données. | Tuning avancé (optionnel) |
-| **ARIMA**     | Modèle statistique pour séries temporelles non stationnaires.<br>Auto-SARIMAX avec pmdarima (`auto_arima`). | Capturer saisonnalité journalière/hebdomadaire |
+### 🎯 Régression Ridge
 
-### Exemple d’entraînement (RandomForest)
+- **Principe** : Variante de la régression linéaire avec régularisation L2 pour éviter le surapprentissage.
+- **Pourquoi l'utiliser ?** : Simple, rapide et efficace avec des séries temporelles bien prétraitées.
+- **Utilisation dans le projet** :
+  - Testé comme baseline.
+  - Bonnes performances sur certaines zones, notamment "Baleares" et "Peninsule_Iberique".
+- **Avantages** :
+  - Interprétable.
+  - Faible coût computationnel.
+- **Inconvénients** :
+  - Faible capacité à modéliser la non-linéarité.
 
-```python
-from sklearn.ensemble import RandomForestRegressor
-from src.models.modeling import train_test_split_zone, evaluate_regression
+📷 *[Inclure ici un screenshot de la prédiction Ridge vs réalité]*
 
-# Chargement des données processed
-df = pd.read_parquet("data/processed/Peninsule_Iberique_processed_daily.parquet")
-X_train, X_test, y_train, y_test = train_test_split_zone(df, target="demand")
+---
 
-# Entraînement
-rf = RandomForestRegressor(n_estimators=100, random_state=42)
-rf.fit(X_train, y_train)
+### 🎯 ElasticNet
 
-# Évaluation
-metrics = evaluate_regression(rf, X_test, y_test)
-print(metrics)
-```
+- **Principe** : Combine régularisation L1 (Lasso) et L2 (Ridge).
+- **Pourquoi l'utiliser ?** : Utile quand plusieurs features sont corrélées.
+- **Utilisation dans le projet** : Meilleur modèle sur certaines zones comme "Melilla".
+- **Avantages** :
+  - Sélectionne automatiquement les variables pertinentes.
+- **Limites** :
+  - Moins stable sur les petites séries.
+
+---
+
+### 🌳 Random Forest
+
+- **Principe** : Ensemble de plusieurs arbres de décision entraînés sur des sous-échantillons.
+- **Pourquoi l'utiliser ?** : Très robuste, performant sur des données non linéaires.
+- **Utilisation dans le projet** :
+  - Meilleur modèle horaire dans la majorité des zones.
+  - Également utilisé en journalier.
+- **Avantages** :
+  - Prédictions stables.
+  - Gère les interactions implicites entre variables.
+- **Inconvénients** :
+  - Moins interprétable.
+  - Plus lent à entraîner.
+
+📷 *[Inclure un graphe RF : importance des variables]*
+
+---
+
+### ⚡ LightGBM
+
+- **Principe** : Boosting d'arbres (Gradient Boosting) très rapide.
+- **Pourquoi l'utiliser ?** : Excellente performance pour les problèmes structurés.
+- **Utilisation dans le projet** : Testé mais parfois battu par Random Forest.
+- **Avantages** :
+  - Efficace en entraînement.
+  - Gère bien les séries avec bruit.
+- **Limites** :
+  - Sensible à l'overfitting sans réglage.
+
+---
+
+### ⏳ ARIMA (AutoRegressive Integrated Moving Average)
+
+- **Principe** : Modélisation basée uniquement sur la série passée.
+- **Pourquoi l'utiliser ?** : Baseline statistique fiable.
+- **Utilisation dans le projet** :
+  - Modèle de référence sur séries stationnaires.
+  - Moins compétitif que les modèles ML en cas de forte variabilité.
+- **Avantages** :
+  - Interprétable et théoriquement solide.
+- **Limites** :
+  - Ne prend pas en compte les variables exogènes.
+  - Moins performant sur des séries complexes.
 
 ---
 
 ## 2. Modèles Deep Learning
 
-Nous avons expérimenté quatre architectures principales :
+### 🧠 LSTM (Long Short-Term Memory)
 
-1. **LSTM** (Long Short-Term Memory)
+- **Principe** : Réseau de neurones récurrents adapté à la mémoire à long terme.
+- **Pourquoi l'utiliser ?** : Excellent pour capturer des dépendances temporelles lointaines.
+- **Utilisation dans le projet** :
+  - Prévision de la demande horaire et journalière.
+  - Exige un preprocessing soigné.
+- **Avantages** :
+  - Prend en compte le contexte historique.
+- **Inconvénients** :
+  - Long à entraîner.
+  - Sensible aux hyperparamètres.
 
-   * Capture les dépendances longues dans les séries.
-   * Architecture simple : couche LSTM → Dropout → Dense.
+📷 *[Inclure courbe d'apprentissage + prédiction LSTM vs réelle]*
 
-2. **GRU** (Gated Recurrent Unit)
+---
 
-   * Variante légère de LSTM.
-   * Moins de paramètres, convergence plus rapide.
+### 🔁 GRU (Gated Recurrent Unit)
 
-3. **1D CNN**
+- **Principe** : Variante simplifiée de LSTM.
+- **Pourquoi l'utiliser ?** : Moins coûteux que LSTM, performances souvent comparables.
+- **Utilisation dans le projet** :
+  - Utilisé comme alternative à LSTM.
+- **Avantages** :
+  - Moins de paramètres.
+- **Limites** :
+  - Légèrement moins performant pour de longues dépendances.
 
-   * Convolutions sur la dimension temporelle pour extraire des motifs locaux.
-   * Architecture : Conv1D → Pooling → Conv1D → Pooling → Flatten → Dense.
+---
 
-4. **CNN–LSTM**
+### 🧩 CNN-1D
 
-   * Combine CNN pour extraire des caractéristiques locales et LSTM pour la dépendance temporelle.
-   * Architecture : TimeDistributed(CNN) → LSTM → Dense.
+- **Principe** : Applique des filtres convolutifs sur les séries pour détecter des patterns locaux.
+- **Pourquoi l'utiliser ?** : Très bon pour détecter des motifs cycliques.
+- **Utilisation dans le projet** :
+  - Prévision sur des séquences fixes (input sliding window).
+- **Avantages** :
+  - Rapide et efficace.
+- **Limites** :
+  - Contexte temporel plus local que LSTM/GRU.
 
-### Exemple de création d’un LSTM
+---
 
-```python
-from src.models.dl_models import build_lstm
-from src.models.dl_utils   import create_sequences, scale_data
-from src.models.dl_training import train_and_save
+### 🔀 CNN-LSTM
 
-# Préparation des séquences
-df = pd.read_parquet("data/processed/Peninsule_Iberique_processed_hourly.parquet")
-features = [c for c in df.columns if c != "demand"]
-X, y = create_sequences(df, "demand", features, lookback=24, horizon=1)
+- **Principe** : Combine un bloc CNN (extraction de motifs) + LSTM (séquence).
+- **Pourquoi l'utiliser ?** : Combine les points forts des deux approches.
+- **Utilisation dans le projet** :
+  - Prévision avancée avec séquence d’entrée multi-feature.
+- **Avantages** :
+  - Très performant si bien calibré.
+- **Inconvénients** :
+  - Coût d'entraînement élevé.
 
-# Split et scaling
-split  = int(len(X)*0.8)
-X_train, X_val = X[:split], X[split:]
-y_train, y_val = y[:split], y[split:]
-X_train_s, X_val_s, scaler = scale_data(X_train, X_val)
+---
 
-# Build & train
-model = build_lstm(input_shape=(24, len(features)))
-hist, filepath = train_and_save(
-    model, X_train_s, y_train, X_val_s, y_val,
-    models_dir="models/dl", zone="Peninsule_Iberique",
-    horizon="hourly", name="LSTM",
-    epochs=50, batch_size=32
-)
+## 🧪 Sélection des meilleurs modèles
+
+Après entraînement, chaque modèle a été évalué à l’aide de :
+- RMSE (Root Mean Squared Error)
+- MAE (Mean Absolute Error)
+- MAPE (Mean Absolute Percentage Error)
+
+Les meilleurs modèles par zone ont été automatiquement sélectionnés puis sauvegardés :
+
+```text
+📁 submission/
+├── Peninsule_Iberique_processed_hourly.parquet
+├── Melilla_processed_daily.parquet
+├── features_selected_hourly.csv
+├── best_models.csv
 ```
 
----
-
-## 3. Sélection finale des modèles
-
-* À l’issue de la comparaison des **RMSE**, le meilleur modèle par zone et horizon est enregistré dans `data/submission/best_models.csv`.
-* Ces modèles sont ensuite chargés automatiquement dans le dashboard Streamlit pour la production.
-
-```yaml
-# Extrait de best_models.csv
-zone,best_model_daily,best_model_hourly
-Peninsule_Iberique,Ridge,RandomForest
-Baleares,Ridge,RandomForest
-...
-```
-
-![Comparaison RMSE](images/rmse_comparison.png)
+📷 *\[Inclure un tableau résumé des performances par zone]*
 
 ---
 
-> **À suivre** :
-> Passe à la section **Résultats** pour visualiser en détail les performances et anomalies détectées.
+## ✅ Résumé
 
----
+Chaque modèle a été testé de manière rigoureuse, avec :
+
+* Prétraitement spécifique par zone.
+* Sélection de features contextuelles.
+* Validation croisée (CV).
+* Sélection automatique du meilleur algorithme.
+
+➡️ Voir la section [Résultats](../results.md) pour les scores détaillés et la robustesse des modèles.
+
+
