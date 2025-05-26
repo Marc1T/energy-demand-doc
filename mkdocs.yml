@@ -1,1 +1,16 @@
-site_name: My Docs
+site_name: Energy Demand Forecasting
+theme:
+  name: material
+nav:
+  - Accueil: index.md
+  - Introduction: intro.md
+  - Données: data.md
+  - Modèles: models.md
+  - Résultats: results.md
+  - Dashboard: dashboard.md
+  - Équipe: team.md
+repo_url: https://github.com/TonCompte/energy-demand-doc
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
