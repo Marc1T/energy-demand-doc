@@ -1,17 +1,16 @@
-# Welcome to MkDocs
+# Accueil
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+![Architecture du projet](images/architecture.png)
 
-## Commands
+Bienvenue dans la documentation du projet **Prévision de la Demande Énergétique en Espagne**.  
+Ce projet a pour objectif de :
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+1. **Collecter** et préparer les données (API REE, PVPC, météo).  
+2. **Nettoyer** et **enrichir** les séries temporelles (features calendaires, lag, etc.).  
+3. **Entraîner** et comparer des modèles classiques (ElasticNet, RandomForest, ARIMA…) et Deep Learning (LSTM, GRU, CNN-LSTM).  
+4. **Évaluer** la performance avec la métrique **RMSE** et sélectionner les meilleurs.  
+5. Déployer un **dashboard** Streamlit pour visualiser les prévisions.
 
-## Project layout
+---
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Pour commencer, accédez à la section **Introduction**.
