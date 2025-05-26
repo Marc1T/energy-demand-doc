@@ -1,13 +1,14 @@
 # readthedocs.yml
 version: 2
 
+# Indique à RTD qu'on utilise MkDocs
+mkdocs:
+  configuration: mkdocs.yml
+
 build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
-
-sphinx:
-  configuration: mkdocs.yml
 
 python:
   install:
