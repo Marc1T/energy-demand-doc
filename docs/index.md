@@ -1,6 +1,6 @@
 # Accueil
 
-![Architecture du projet](images/architecture.png)
+![Bannière](../images/banniere.png)
 
 Bienvenue dans la documentation du projet **Prévision de la Demande Énergétique en Espagne**.  
 Ce projet a pour objectif de :

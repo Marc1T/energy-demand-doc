@@ -1,11 +1,17 @@
 site_name: Prévision de la Demande Énergétique
 site_description: "Documentation du projet académique de prévision de la demande électrique en Espagne"
+site_author: Marc Thierry Nankouli
 repo_url: https://github.com/Marc1T/electricityDemandForecasting.git
-
 theme:
   name: material
+  language: fr
   features:
-    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.share
+    - toc.integrate
+    - content.code.copy
 
 nav:
   - Accueil: index.md
@@ -15,8 +21,19 @@ nav:
   - Résultats: results.md
   - Dashboard: dashboard.md
   - Équipe: team.md
+  - Conclusion et Références: final.md
 
 markdown_extensions:
   - admonition
+  - codehilite
   - toc:
       permalink: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.emoji
+
+extra_css:
+  - ./stylesheets/extra.css
