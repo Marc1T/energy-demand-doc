@@ -36,4 +36,4 @@ markdown_extensions:
   - pymdownx.emoji
 
 extra_css:
-  - ./stylesheets/extra.css
+  - stylesheets/extra.css
