@@ -169,6 +169,6 @@ Chaque modèle a été testé de manière rigoureuse, avec :
 * Validation croisée (CV).
 * Sélection automatique du meilleur algorithme.
 
-➡️ Voir la section [Résultats](../results.md) pour les scores détaillés et la robustesse des modèles.
+➡️ Voir la section [Résultats](results.md) pour les scores détaillés et la robustesse des modèles.
 
 

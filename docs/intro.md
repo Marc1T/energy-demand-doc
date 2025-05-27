@@ -67,4 +67,4 @@ energy_demand_forecasting/
 
 ---
 
-Après lecture de cette introduction, rendez‑vous dans la section **Données** pour découvrir en détail les sources, formats et l’architecture de collecte.  
+Après lecture de cette introduction, rendez‑vous dans la section [**Données**](data.md) pour découvrir en détail les sources, formats et l’architecture de collecte.  

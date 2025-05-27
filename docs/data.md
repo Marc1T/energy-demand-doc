@@ -238,9 +238,8 @@ Pour chaque zone :
 
 ---
 
-> **À suivre :**
-> Rendez‑vous dans la section **Modèles** pour découvrir en détail les approches de machine learning et deep learning utilisées.
-
+>[ **À suivre :**](models.md)
+> Rendez‑vous dans la section [**Modèles**](models.md) pour découvrir en détail les approches de machine learning et deep learning utilisées.
 
 ---
 

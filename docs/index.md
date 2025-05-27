@@ -13,4 +13,4 @@ Ce projet a pour objectif de :
 
 ---
 
-Pour commencer, accédez à la section **Introduction**.
+Pour commencer, accédez à la section [**Introduction**](intro.md).
