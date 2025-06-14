@@ -1,6 +1,6 @@
 # Données utilisées & Préparation
 
-![Flux des données](images/data_flow.png)
+![Flux des données](assets/images/data_flow.png)
 
 ---
 
@@ -46,11 +46,11 @@ df_hourly = pd.concat(df_parts).sort_index().drop_duplicates()
 Chaque `df_hourly` est alors sauvegardé :
 
 ```python
-df_hourly.to_csv("data/raw/nacional_hourly.csv", index_label="datetime")
-df_hourly.resample("D").sum().to_csv("data/raw/nacional_daily.csv", index_label="date")
+df_hourly.to_csv("data/raw/Baleares_hourly.csv", index_label="datetime")
+df_hourly.resample("D").sum().to_csv("data/raw/Baleares_daily.csv", index_label="date")
 ```
 
-![Extrait CSV raw](images/csv_example.png)
+![Extrait CSV raw](assets/images/csv_example.png)
 
 ---
 
@@ -78,7 +78,7 @@ df_weather.to_csv("data/external/Madrid_weather_hourly.csv", index_label="dateti
 df_weather.resample("D").mean().to_csv("data/external/Madrid_weather_daily.csv", index_label="date")
 ```
 
-![Exemple météo](images/weather_example.png)
+![Exemple météo](assets/images/weather_example.png)
 
 ### 3.2 Jours fériés
 
@@ -98,6 +98,7 @@ Avant 2021‑06, ces jours fériés sont **dupliqués** pour chaque région.
 ---
 
 ## 4. Fusion & prétraitement initial (`interim`)
+![docs/intermediate_flow.png](assets/images/intermediate_flow.png)
 
 Dans `docs/intermediate_flow.png` (cf. image ci‑dessus), on illustre :
 
@@ -209,8 +210,18 @@ Le fichier suivant a été généré et utilisé pour la suite :
 
 ```csv
 zone,features
-Peninsule_Iberique,"['demand', 'lag_1h', ..., 'temperature_2m * lag_3h']"
-...
+Baleares,"['lag_6h', 'dayofyear', 'T_sq', 'lag_168h', 'temperature_2m', 'lag_4h', 'lag_24h', 'rmean_7d', 'lag_5h', 'lag_1h', 'WindChill', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Canarias,"['lag_11h', 'lag_6h', 'rad_x_RH', 'lag_168h', 'hour_cos', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Ceuta,"['lag_11h', 'lag_6h', 'lag_7h', 'lag_168h', 'hour_cos', 'hour_sin', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+El_Hierro,"['lag_11h', 'lag_6h', 'dayofyear', 'lag_168h', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'rmean_7d', 'lag_5h', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Gran_canaria,"['lag_11h', 'lag_6h', 'rad_x_RH', 'lag_168h', 'rad_x_T', 'shortwave_radiation', 'hour_cos', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Lanzarote_Fuerteventura,"['lag_11h', 'lag_6h', 'lag_7h', 'lag_168h', 'lag_10h', 'lag_4h', 'lag_24h', 'hour', 'lag_5h', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+La_Gomera,"['lag_6h', 'dayofyear', 'lag_168h', 'shortwave_radiation', 'hour_cos', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+La_Palma,"['lag_6h', 'rad_x_RH', 'lag_168h', 'rad_x_T', 'shortwave_radiation', 'hour_cos', 'rad_x_pvpc', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Melilla,"['lag_11h', 'lag_6h', 'dayofyear', 'lag_168h', 'rad_rsum_7', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+nacional,"['lag_11h', 'lag_6h', 'dayofyear', 'lag_168h', 'lag_4h', 'lag_24h', 'hour', 'lag_5h', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Peninsule_Iberique,"['lag_11h', 'lag_6h', 'lag_7h', 'lag_168h', 'lag_8h', 'lag_4h', 'lag_24h', 'lag_5h', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
+Tenerife,"['lag_11h', 'lag_6h', 'rad_x_RH', 'lag_168h', 'hour_cos', 'rad_rsum_3', 'lag_4h', 'lag_24h', 'hour', 'lag_1h', 'lag_12h', 'demand', 'lag_2h', 'lag_3h']"
 ```
 
 > 🔍 **Pourquoi c’est important ?**

@@ -155,9 +155,23 @@ Les meilleurs modèles par zone ont été automatiquement sélectionnés puis sa
 ├── features_selected_hourly.csv
 ├── best_models.csv
 ```
-
-📷 *\[Inclure un tableau résumé des performances par zone]*
-
+metrics pas tres bons pour les modeles deep
+```csv
+zone,horizon,model,MAE,RMSE,MAPE
+Ceuta,daily,LSTM,294.184478086403,297.5592351506879,79.46752716653282
+Ceuta,daily,GRU,290.5378141736367,293.860330991986,79.22204350660417
+Ceuta,daily,CNN,44.61273922839268,80.9607488539366,50.97870938287471
+Ceuta,daily,CNN-LSTM,291.22003079047994,294.55189605442234,79.26797527424722
+Ceuta,hourly,LSTM,0.6781376151244601,1.239811621017631,inf
+Ceuta,hourly,GRU,0.6156814975927049,1.2077079105214479,inf
+Ceuta,hourly,CNN,0.7745091407810173,1.5464381211602554,inf
+Ceuta,hourly,CNN-LSTM,0.5962147199231576,1.1674468191333844,inf
+```
+pourtant on a de bon resultats avec les modeles classiques.
+```csv
+zone,daily_ElasticNet_MAE,daily_ElasticNet_RMSE,daily_ElasticNet_MAPE,daily_Ridge_MAE,daily_Ridge_RMSE,daily_Ridge_MAPE,daily_RandomForest_MAE,daily_RandomForest_RMSE,daily_RandomForest_MAPE,daily_auto_arima_MAE,daily_auto_arima_RMSE,daily_auto_arima_MAPE,hourly_ElasticNet_MAE,hourly_ElasticNet_RMSE,hourly_ElasticNet_MAPE,hourly_Ridge_MAE,hourly_Ridge_RMSE,hourly_Ridge_MAPE,hourly_RandomForest_MAE,hourly_RandomForest_RMSE,hourly_RandomForest_MAPE,hourly_auto_arima_MAE,hourly_auto_arima_RMSE,hourly_auto_arima_MAPE
+Ceuta,0.014531369384538452,0.019753042463590328,0.011075109418962639,0.00020269046454933297,0.0002574187522392442,0.00013044864687825013,19.26567012477717,31.865167651828283,5.206201858597312,49.81000526183854,100.7861014693329,69.04778687335315,0.8051295554100869,1.4303024831726077,inf,0.7740636064212212,1.4207898605458968,inf,0.49929184159544143,1.0516865447893236,inf,inf,inf,inf
+```
 ---
 
 ## ✅ Résumé

@@ -44,9 +44,11 @@ Le projet **Energy Demand Forecasting** a été réalisé dans le cadre d’un t
 | Collecte des données (API REE, PVPC, météo)| Marc Thierry Nankouli  |
 | Prétraitement, Feature Engineering         | Marc Thierry Nankouli  |
 | Modélisation (ML, DL, évaluation)          | Marc Thierry Nankouli  |
-| Développement du dashboard Streamlit       | Marc Thierry Nankouli  |
+| Développement du dashboard prototype       | Marc Thierry Nankouli  |
 | Documentation technique ReadTheDocs        | Marc Thierry Nankouli  |
+| Validation, dashboard streamlite           | Équipe                  |
 | Validation, amélioration continue          | Équipe                  |
+
 
 ---
 
@@ -63,7 +65,7 @@ Le projet **Energy Demand Forecasting** a été réalisé dans le cadre d’un t
 
 Nous remercions :
 
-- Nos enseignants pour leur accompagnement.
+- Nos enseignants pour leur accompagnement, en particulier Pr MASROUR Tawfik
 - L’opérateur espagnol **Red Eléctrica de España (REE)** pour l’accès aux données.
-- Les communautés open source (Streamlit, scikit-learn, TensorFlow, etc.) pour leurs outils formidables.
+- Les communautés open source (scikit-learn, TensorFlow, etc.) pour leurs outils formidables.
 ---
