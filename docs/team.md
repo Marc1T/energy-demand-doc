@@ -33,21 +33,6 @@ Le projet **Energy Demand Forecasting** a été réalisé dans le cadre d’un t
 
 ---
 
-## 💼 Répartition des tâches
-
-| Tâche                                       | Responsable            |
-|--------------------------------------------|-------------------------|
-| Collecte des données (API REE, PVPC, météo)| Marc Thierry Nankouli  |
-| Prétraitement, Feature Engineering         | Marc Thierry Nankouli  |
-| Modélisation (ML, DL, évaluation)          | Marc Thierry Nankouli  |
-| Développement du dashboard prototype       | Marc Thierry Nankouli  |
-| Documentation technique ReadTheDocs        | Marc Thierry Nankouli  |
-| Validation, dashboard streamlite           | Équipe                  |
-| Validation, amélioration continue          | Équipe                  |
-
-
----
-
 ## 🧭 Objectifs pédagogiques
 
 - Appliquer les techniques de data science à un cas réel complexe.

@@ -73,15 +73,13 @@ Nous avons produit des graphiques comparant les prédictions et les valeurs rée
 * **Observations** : Le modèle RandomForest capture bien les variations journalières.
 * **Erreur moyenne** : MAE = 10739.81 MW / RMSE = 19365.63 MW
 
-
 ---
 
 ### Exemple : Melilla - Prévision journalière
 
 📷 ![Forecast vs Actual - Ceuta Daily](assets/images/Ceuta_daily_forecast.png)
 
-* **Observations** : La demande est plus volatile, mais ElasticNet reste robuste.
-* **Erreur moyenne** : MAE = 1.9 MW / RMSE = 3.1 MW
+* **Observations** : La demande est plus volatile.
 
 ---
 
