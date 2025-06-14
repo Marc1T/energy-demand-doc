@@ -21,19 +21,15 @@ Le projet **Energy Demand Forecasting** a été réalisé dans le cadre d’un t
 
 ---
 
-### 🤖 Collaborateur (Binôme)
+### 🤖 Collaborateur
 
-- [Nom Prénom ou Initiales]
-- Co-développement du backend Java et intégration API (si binôme sur une partie annexe du projet)
-- Contribution à la documentation technique et à la gestion du projet
+- ELFILALI ECH-CHAFIQ Halima
 
 ---
 
-### 🤖 Collaborateur (Binôme)
+### 🤖 Collaborateur
 
-- [Nom Prénom ou Initiales]
-- Co-développement du backend Java et intégration API (si binôme sur une partie annexe du projet)
-- Contribution à la documentation technique et à la gestion du projet
+- CHAIBOU SAIDOU Abdoulaye
 
 ---
 
@@ -65,7 +61,7 @@ Le projet **Energy Demand Forecasting** a été réalisé dans le cadre d’un t
 
 Nous remercions :
 
-- Nos enseignants pour leur accompagnement, en particulier Pr MASROUR Tawfik
+- Nos enseignants pour leur accompagnement, en particulier Pr MASROUR Tawfik.
 - L’opérateur espagnol **Red Eléctrica de España (REE)** pour l’accès aux données.
 - Les communautés open source (scikit-learn, TensorFlow, etc.) pour leurs outils formidables.
 ---
